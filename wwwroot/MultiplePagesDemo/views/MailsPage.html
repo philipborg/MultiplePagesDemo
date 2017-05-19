@@ -1,0 +1,29 @@
+﻿<link rel="import" href="/sys/polymer/polymer.html" />
+<template>
+    <style>
+        .flex-container {
+            display: flex;
+        }
+
+        .flex-item {
+            flex: 1;
+            border: solid;
+            padding: 10px;
+        }
+    </style>
+    <template is="dom-bind">
+        <h1>MAIL</h1>
+        <div class="flex-container">
+            <div class="flex-item" style="background-color: cornsilk">
+                <ul>
+                    <template is="dom-repeat" items="{{model.Mails}}">
+                        <li><a href="{{item.Url}}">{{item.Title}}</a></li>
+                    </template>
+                </ul>
+            </div>
+            <div class="flex-item" style="background-color: gainsboro">
+                <starcounter-include partial="{{model.Focused}}"></starcounter-include>
+            </div>
+        </div>
+    </template>
+</template>
