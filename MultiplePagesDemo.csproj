@@ -61,12 +61,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Focused.json.cs">
-      <DependentUpon>Focused.json</DependentUpon>
-    </Compile>
-    <Compile Include="MailsPage.json.cs">
-      <DependentUpon>MailsPage.json</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

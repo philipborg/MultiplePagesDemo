@@ -1,4 +1,5 @@
 ﻿using Starcounter;
+using System.Linq;
 
 namespace MultiplePagesDemo
 {
@@ -19,26 +20,28 @@ namespace MultiplePagesDemo
 
             Handle.GET("/MultiplePagesDemo/mails", () =>
             {
-                if (Session.Current != null) return Session.Current.Data;
-
+                if (Session.Current != null)
+                {
+                    return Session.Current.Data;
+                }
                 Session.Current = new Session(SessionOptions.PatchVersioning);
 
-                MailsPage mp = new MailsPage()
+                var mailPage = new MailsPage()
                 {
                     Session = Session.Current,
-                    Mails = Db.SQL<Mail>("SELECT m FROM MultiplePagesDemo.Mail m LIMIT ?", 10)
+                    Mails = Db.SQL<Mail>("SELECT m FROM MultiplePagesDemo.Mail m")
                 };
 
                 Focused foc = new Focused();
-                foc.Data = mp.Mails[0].Data;
-                mp.Focused = foc;
+                foc.Data = mailPage.Mails.FirstOrDefault();
+                mailPage.Focused = foc;
 
-                return mp;
+                return mailPage;
             });
 
             Handle.GET("/multiplepagesdemo/mails/{?}", (string id) =>
             {
-                Mail mail = Db.SQL<Mail>("select m from multiplepagesdemo.mail m where objectid=?", id).First;
+                Mail mail = Db.SQL<Mail>("SELECT m FROM multiplepagesdemo.mail m WHERE objectid=?", id).First;
                 MailsPage mp = Self.GET<MailsPage>("/multiplepagesdemo/mails");
                 mp.Focused.Data = mail;
                 return mp;
@@ -46,19 +49,20 @@ namespace MultiplePagesDemo
 
             Db.Transact(() =>
             {
-                Db.SlowSQL("DELETE FROM multiplepagesdemo.mail");
-
-                new Mail()
+                if (Db.SlowSQL<long>("SELECT COUNT(*) FROM multiplepagesdemo.mail").First == 0)
                 {
-                    Title = "Hello Mail",
-                    Content = "This is my first email!"
-                };
+                    new Mail()
+                    {
+                        Title = "Hello Mail",
+                        Content = "This is my first email!"
+                    };
 
-                new Mail()
-                {
-                    Title = "Greetings",
-                    Content = "How are you? Regards jack"
-                };
+                    new Mail()
+                    {
+                        Title = "Greetings",
+                        Content = "How are you? Regards jack"
+                    };
+                }
             });
         }
     }
