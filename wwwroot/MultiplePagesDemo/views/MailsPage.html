@@ -12,16 +12,20 @@
         }
     </style>
     <template is="dom-bind">
-        <h1>MAIL</h1>
+        <h1>MAIL CLIENT</h1>
         <div class="flex-container">
-            <div class="flex-item" style="background-color: cornsilk">
+            <div class="flex-item">
+                <h5>Mails</h5>
+                <hr />
                 <ul>
                     <template is="dom-repeat" items="{{model.Mails}}">
                         <li><a href="{{item.Url}}">{{item.Title}}</a></li>
                     </template>
                 </ul>
             </div>
-            <div class="flex-item" style="background-color: gainsboro">
+            <div class="flex-item">
+                <h5>Mail Content</h5>
+                <hr />
                 <starcounter-include partial="{{model.Focused}}"></starcounter-include>
             </div>
         </div>

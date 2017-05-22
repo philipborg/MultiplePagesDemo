@@ -50,14 +50,14 @@ namespace MultiplePagesDemo
 
                 new Mail()
                 {
-                    Title = "hello world",
-                    Content = "this is my first email"
+                    Title = "Hello Mail",
+                    Content = "This is my first email!"
                 };
 
                 new Mail()
                 {
-                    Title = "hi alexey!",
-                    Content = "how are you? regards jack"
+                    Title = "Greetings",
+                    Content = "How are you? Regards jack"
                 };
             });
         }
