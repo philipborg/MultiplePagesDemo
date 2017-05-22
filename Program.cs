@@ -49,7 +49,7 @@ namespace MultiplePagesDemo
 
             Db.Transact(() =>
             {
-                if (Db.SlowSQL<long>("SELECT COUNT(*) FROM multiplepagesdemo.mail").First == 0)
+                if (Db.SQL<long>("SELECT COUNT(m) FROM multiplepagesdemo.mail m").First == 0)
                 {
                     new Mail()
                     {
