@@ -33,7 +33,7 @@ namespace MultiplePagesDemo
                 };
 
                 Focused foc = new Focused();
-                foc.Data = mailPage.Mails.FirstOrDefault();
+                foc.Data = mailPage.Mails.FirstOrDefault().Data;
                 mailPage.Focused = foc;
 
                 return mailPage;

@@ -1,11 +1,11 @@
 ﻿<link rel="import" href="/sys/polymer/polymer.html" />
 <template>
     <style>
-        .content {
+        .multiplepagesdemo-content {
             display: flex;
         }
 
-        .content__item {
+        .multiplepagesdemo-content__item {
             flex: 1;
             border: solid;
             padding: 10px;
@@ -13,8 +13,8 @@
     </style>
     <template is="dom-bind">
         <h1>MAIL CLIENT</h1>
-        <div class="content">
-            <div class="content__item">
+        <div class="multiplepagesdemo-content">
+            <div class="multiplepagesdemo-content__item">
                 <h5>Mails</h5>
                 <hr />
                 <ul>
@@ -23,7 +23,7 @@
                     </template>
                 </ul>
             </div>
-            <div class="content__item">
+            <div class="multiplepagesdemo-content__item">
                 <h5>Mail Content</h5>
                 <hr />
                 <starcounter-include partial="{{model.Focused}}"></starcounter-include>
