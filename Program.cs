@@ -42,9 +42,9 @@ namespace MultiplePagesDemo
             Handle.GET("/multiplepagesdemo/mails/{?}", (string id) =>
             {
                 Mail mail = Db.SQL<Mail>("SELECT m FROM multiplepagesdemo.mail m WHERE objectid=?", id).First;
-                MailsPage mp = Self.GET<MailsPage>("/multiplepagesdemo/mails");
-                mp.Focused.Data = mail;
-                return mp;
+                MailsPage mailsPage = Self.GET<MailsPage>("/multiplepagesdemo/mails");
+                mailsPage.Focused.Data = mail;
+                return mailsPage;
             });
 
             Db.Transact(() =>
